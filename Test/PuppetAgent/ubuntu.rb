@@ -14,7 +14,7 @@ describe "Dockerfile.ubuntu_1604" do
     set :docker_image, @image.id
   end
 
-  context 'install_puppet_agent.sh' do
+  context 'install.sh' do
     describe command('DEBIAN_FRONTEND=noninteractive bash -c "./install.sh"') do
       its(:stdout) { should match /Installing OrangeHRM System/ }
       its(:stdout) { should match /Version parameter not defined, assuming latest/ }
