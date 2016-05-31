@@ -7,4 +7,4 @@ matrix:
     sudo: required
     services: docker
     script:
-      - bundle exec rspec spec/install_puppet_agent/ubuntu_1604_spec.rb
+      - bundle exec rspec Test/Puppet Agent/ubuntu.rb
