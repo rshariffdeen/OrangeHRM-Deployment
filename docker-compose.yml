@@ -1,0 +1,23 @@
+app:
+  image: 285645945015.dkr.ecr.us-east-1.amazonaws.com/ohrm-enterprise:5.3v2
+  container_name: orangehrm
+  ports:
+    - 80
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+  environment:
+    - VIRTUAL_HOST=orangehrm
+    - OHRM_DB_NAME=orangehrm
+    - OHRM_DB_HOST=dbserver
+    - OHRM_DB_USER=root
+    - OHRM_DB_PASS=root
+    - OHRM_ADMIN_PASS=admin
+    - OHRM_SYSADMIN_PASS=admin
+  links:
+    - dbserver:dbserver
+
+dbserver:
+  container_name: dbserver
+  image: mysql:5.5
+  environment:
+    - MYSQL_ROOT_PASSWORD=root

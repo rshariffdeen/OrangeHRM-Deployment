@@ -15,6 +15,9 @@ command -v puppet >/dev/null 2>&1 || {
 printf "Installing Docker module for Puppet\n";
 puppet module install garethr-docker
 
+printf "Installing Docker Compose module for Puppet\n";
+puppet module install garystafford-docker_compose
+
 printf "Installing Docker via Puppet....\n";
 puppet apply PuppetScripts/installDocker.pp
 
