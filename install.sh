@@ -21,6 +21,9 @@ puppet module install garystafford-docker_compose
 printf "Installing Docker via Puppet....\n";
 puppet apply PuppetScripts/installDocker.pp
 
+printf "Pulling OrangeHRM docker image...\n";
+docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
+docker pull $orangehrm_docker_image
+
 printf "Deploying OrangeHRM System....\n";
-docker login -u AWS -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
 puppet apply PuppetScripts/deployOrangeHRM.pp
