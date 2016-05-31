@@ -15,10 +15,12 @@ describe "Dockerfile.ubuntu_1604" do
   end
 
   context 'install_puppet_agent.sh' do
-    describe command('DEBIAN_FRONTEND=noninteractive bash -c "./install_puppet_agent.sh"') do
+    describe command('DEBIAN_FRONTEND=noninteractive bash -c "./install.sh"') do
+      its(:stdout) { should match /Installing OrangeHRM System/ }
       its(:stdout) { should match /Version parameter not defined, assuming latest/ }
       its(:stdout) { should match /The following NEW packages will be installed:/ }
       its(:stdout) { should match /puppet-agent/ }
+      its(:stdout) { should match /Finish installing puppet/ }
       its(:exit_status) { should eq 0 }
     end
 
