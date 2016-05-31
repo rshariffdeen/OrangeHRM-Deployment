@@ -1,5 +1,5 @@
 include 'docker'
 
-docker::image { 'ubuntu':
-   image_tag => 'trusty',
+docker::image { 'hello-world':
+   image_tag => 'latest',
 }

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ./config
 printf "\nInstalling OrangeHRM System\n-----------------------------------------\n\n";
 printf "Checking for Puppet Installation....\n";
 command -v puppet >/dev/null 2>&1 || {
@@ -17,3 +18,5 @@ puppet module install garethr-docker
 printf "Installing Docker via Puppet....\n";
 puppet apply PuppetScripts/installDocker.pp
 
+printf "Deploying OrangeHRM System....\n";
+puppet apply PuppetScripts/installDocker.pp
