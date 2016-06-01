@@ -19,7 +19,7 @@ printf "\n\nInstalling Docker Compose module for Puppet\n***********************
 puppet module install garystafford-docker_compose
 
 printf "\n\nInstalling Docker via Puppet\n***********************************************\n\n";
-puppet apply PuppetScripts/installDocker.pp
+sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/installDocker.pp
 
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
 sudo usermod -aG docker $(whoami)
@@ -30,4 +30,4 @@ docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr
 docker pull $orangehrm_docker_image
 
 printf "\n\nDeploying OrangeHRM System\n*******************************************\n\n";
-puppet apply PuppetScripts/deployOrangeHRM.pp
+sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/deployOrangeHRM.pp
