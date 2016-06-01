@@ -22,5 +22,4 @@ sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/installDocker.pp
 
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
 sudo usermod -aG docker $(whoami)
-newgrp docker
-exit 0
+source ~/.bashrc
