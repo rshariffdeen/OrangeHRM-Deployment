@@ -11,7 +11,3 @@ install:
     - ./install.sh
 script:
     - ./deploy.sh
-    - make test
-
-
-
