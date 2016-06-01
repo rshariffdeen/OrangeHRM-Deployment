@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1a08e3b7-58be-4e90-bb96-0d21e928c799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PuppetScripts/deployOrangeHRM.pp" afterPath="$PROJECT_DIR$/PuppetScripts/deployOrangeHRM.pp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/install.sh" afterPath="$PROJECT_DIR$/install.sh" />
     </list>
     <ignored path="OrangeHRM-Deployment.iws" />
@@ -25,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="install.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="install.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/install.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state relative-caret-position="251">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -105,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deployOrangeHRM.pp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deployOrangeHRM.pp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PuppetScripts/deployOrangeHRM.pp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -144,8 +143,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/PuppetScripts/installDocker.pp" />
         <option value="$PROJECT_DIR$/config" />
-        <option value="$PROJECT_DIR$/install.sh" />
         <option value="$PROJECT_DIR$/PuppetScripts/deployOrangeHRM.pp" />
+        <option value="$PROJECT_DIR$/install.sh" />
       </list>
     </option>
   </component>
@@ -331,12 +330,12 @@
       <option name="presentableId" value="Default" />
       <updated>1464672000576</updated>
       <workItem from="1464672001808" duration="25794000" />
-      <workItem from="1464753163608" duration="1371000" />
+      <workItem from="1464753163608" duration="2060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27165000" />
+    <option name="totallyTimeSpent" value="27854000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
@@ -393,14 +392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/install.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -472,6 +463,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>

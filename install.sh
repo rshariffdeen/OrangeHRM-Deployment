@@ -4,11 +4,11 @@ printf "\nInstalling OrangeHRM System\n-----------------------------------------
 printf "Checking for Puppet Installation....\n";
 command -v puppet >/dev/null 2>&1 || {
     printf >&2 "Puppet is not installed.\nInstalling Puppet.....\n";
-    /bin/bash ./install_puppet_agent.sh;
+    sudo /bin/bash ./install_puppet_agent.sh;
     printf "Adding Puppet to your Path\n";
     export PATH=/opt/puppetlabs/bin:$PATH;
     printf "Starting Puppet Service\n";
-    service puppet start;
+    sudo service puppet start;
     printf "Finish installing puppet\n\n";
 }
 
@@ -24,7 +24,7 @@ puppet apply PuppetScripts/installDocker.pp
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
 sudo groupadd docker
 sudo usermod -aG docker $(whoami)
-sudo newgrp docker
+newgrp docker
 
 printf "\n\nPulling OrangeHRM docker image\n*******************************************\n\n";
 docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
