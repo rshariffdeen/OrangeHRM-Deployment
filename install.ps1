@@ -26,7 +26,5 @@ function Get-InstalledApps
 $result = Get-InstalledApps | where {$_.DisplayName -like $appToMatch}
 
 If ($result -eq $null) {
-      Write-Host "Puppet is not installed. Installing Puppet.....";
-      invoke-expression -Command .\install_puppet_agent.ps1
-
+      invoke-expression -Command .\install_puppet_agent.ps1;
 }
