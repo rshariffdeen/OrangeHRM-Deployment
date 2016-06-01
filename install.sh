@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-source ./config
 printf "\nInstalling OrangeHRM System\n-----------------------------------------\n\n";
 printf "Checking for Puppet Installation....\n";
 command -v puppet >/dev/null 2>&1 || {
@@ -24,10 +23,3 @@ sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/installDocker.pp
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
 sudo usermod -aG docker $(whoami)
 newgrp docker
-
-printf "\n\nPulling OrangeHRM docker image\n*******************************************\n\n";
-docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
-docker pull $orangehrm_docker_image
-
-printf "\n\nDeploying OrangeHRM System\n*******************************************\n\n";
-sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/deployOrangeHRM.pp
