@@ -5,10 +5,6 @@ matrix:
     include:
         - os: linux
           dist: trusty
-        - os: linux
-          dist: precise
-        - os: linux
-          dist: vivid
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh install.sh ; fi
