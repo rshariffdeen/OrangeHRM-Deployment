@@ -5,7 +5,11 @@ matrix:
     include:
         - os: linux
           dist: trusty
-        - os: redhat
+        - os: linux
+          dist: precise
+        - os: linux
+          dist: vivid
+
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh install.sh ; fi
   - if [[ "$TRAVIS_OS_NAME" == "redhat" ]]; then sh install_redhat.sh; fi
