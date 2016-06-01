@@ -9,4 +9,4 @@ docker pull $orangehrm_docker_image
 
 Write-Host "Deploying OrangeHRM System";
 Write-Host "*******************************************";
-docker-compose -f docker-compose.yml up -d orangehrm
+docker-compose -f docker-compose.yml up -d dbserver orangehrm
