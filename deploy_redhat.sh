@@ -6,4 +6,4 @@ docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr
 docker pull $orangehrm_docker_image
 
 printf "\n\nDeploying OrangeHRM System\n*******************************************\n\n";
-sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/deploy.pp
+docker-compose -f docker-compose.yml up -d orangehrm

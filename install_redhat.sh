@@ -17,16 +17,6 @@ sudo /opt/puppetlabs/bin/puppet module install garethr-docker
 printf "\n\nInstalling Docker Compose module for Puppet\n***********************************\n\n";
 sudo /opt/puppetlabs/bin/puppet module install garystafford-docker_compose
 
-printf "\n\nAdding Docker Repository\n***********************************************\n\n";
-sudo tee /etc/yum.repos.d/docker.repo <<-EOF
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/centos/7
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
-
 printf "\n\nInstalling Docker\n***********************************************\n\n";
 curl -fsSL https://get.docker.com/ | sh
 sudo service docker start

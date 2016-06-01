@@ -1,6 +1,7 @@
 include 'docker'
-include 'docker_compose'
-
+class { 'docker::compose':
+        ensure => present
+} ->
 docker_compose { 'docker-compose.yml':
   ensure  => present
 }
