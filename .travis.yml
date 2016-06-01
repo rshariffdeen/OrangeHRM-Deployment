@@ -1,11 +1,10 @@
-language: node_js
+language: bash
 
 matrix:
     fast_finish: true
     include:
         - os: linux
           dist: trusty
-install:
-    - ./install.sh
 script:
+    - ./install.sh
     - ./deploy.sh
