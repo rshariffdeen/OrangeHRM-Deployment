@@ -22,7 +22,6 @@ printf "\n\nInstalling Docker via Puppet\n**************************************
 sudo puppet apply PuppetScripts/installDocker.pp
 
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
-sudo groupadd docker
 sudo usermod -aG docker $(whoami)
 newgrp docker
 
