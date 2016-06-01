@@ -13,10 +13,10 @@ command -v puppet >/dev/null 2>&1 || {
 }
 
 printf "\n\nInstalling Docker module for Puppet\n***************************************\n\n";
-puppet module install garethr-docker
+sudo /opt/puppetlabs/bin/puppet module install garethr-docker
 
 printf "\n\nInstalling Docker Compose module for Puppet\n***********************************\n\n";
-puppet module install garystafford-docker_compose
+sudo /opt/puppetlabs/bin/puppet module install garystafford-docker_compose
 
 printf "\n\nInstalling Docker via Puppet\n***********************************************\n\n";
 sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/installDocker.pp
