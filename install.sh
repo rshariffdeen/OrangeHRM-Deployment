@@ -19,7 +19,7 @@ printf "\n\nInstalling Docker Compose module for Puppet\n***********************
 puppet module install garystafford-docker_compose
 
 printf "\n\nInstalling Docker via Puppet\n***********************************************\n\n";
-puppet apply PuppetScripts/installDocker.pp
+sudo puppet apply PuppetScripts/installDocker.pp
 
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
 sudo groupadd docker
