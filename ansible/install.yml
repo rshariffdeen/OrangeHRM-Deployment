@@ -1,7 +1,0 @@
-- hosts: 52.77.246.102
-  remote_user: ubuntu
-  serial: 1
-  sudo: yes
-  roles:
-     - common
-     - docker
