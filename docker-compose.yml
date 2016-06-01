@@ -2,7 +2,7 @@ orangehrm:
   image: 285645945015.dkr.ecr.us-east-1.amazonaws.com/ohrm-enterprise:5.3v2
   container_name: orangehrm
   ports:
-    - 80
+    - 80:80
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
@@ -13,7 +13,6 @@ orangehrm:
     - OHRM_DB_PASS=root
     - OHRM_ADMIN_PASS=admin
     - OHRM_SYSADMIN_PASS=admin
-  restart: always
   links:
     - dbserver:dbserver
 
