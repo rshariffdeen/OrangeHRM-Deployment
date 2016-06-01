@@ -13,6 +13,7 @@ orangehrm:
     - OHRM_DB_PASS=root
     - OHRM_ADMIN_PASS=admin
     - OHRM_SYSADMIN_PASS=admin
+  restart: always
   links:
     - dbserver:dbserver
 
