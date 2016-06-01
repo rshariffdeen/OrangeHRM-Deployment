@@ -1,11 +1,9 @@
 language: bash
 
 matrix:
-    fast_finish: true
     include:
         - os: linux
           dist: trusty
-install:
-    - bash install.sh
 script:
+    - bash install.sh
     - bash deploy.sh
