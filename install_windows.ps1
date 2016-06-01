@@ -1,10 +1,11 @@
-Write-Host "\nInstalling OrangeHRM System\n-----------------------------------------\n\n";
-Write-Host "Checking for Puppet Installation....\n";
+Write-Host "Installing OrangeHRM System";
+Write-Host "-----------------------------------------";
+Write-Host "Checking for Puppet Installation....";
 
 
 $tempdir = Get-Location
 $tempdir = $tempdir.tostring()
-$appToMatch = '*Microsoft Interop Forms*'
+$appToMatch = '*Puppet*'
 $msiFile = $tempdir+"\microsoft.interopformsredist.msi"
 $msiArgs = "-qb"
 
@@ -25,6 +26,7 @@ function Get-InstalledApps
 $result = Get-InstalledApps | where {$_.DisplayName -like $appToMatch}
 
 If ($result -eq $null) {
-      Write-Host "Puppet is not installed.\nInstalling Puppet.....\n";
+      Write-Host "Puppet is not installed. Installing Puppet.....";
+      invoke-expression -Command .\install_puppet_agent.ps1
 
 }
