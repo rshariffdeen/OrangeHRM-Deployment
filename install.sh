@@ -18,7 +18,7 @@ puppet module install garethr-docker
 printf "\n\nInstalling Docker Compose module for Puppet\n***********************************\n\n";
 puppet module install garystafford-docker_compose
 
-printf "\n\nInstalling Docker via Puppet....\n***********************************************\n\n";
+printf "\n\nInstalling Docker via Puppet\n***********************************************\n\n";
 puppet apply PuppetScripts/installDocker.pp
 
 printf "\n\nAdding current user to docker group\n*****************************************\n\n";
@@ -26,9 +26,9 @@ sudo groupadd docker
 sudo usermod -aG docker $(whoami)
 sudo newgrp docker
 
-printf "\n\nPulling OrangeHRM docker image...\n*******************************************\n\n";
+printf "\n\nPulling OrangeHRM docker image\n*******************************************\n\n";
 docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
 docker pull $orangehrm_docker_image
 
-printf "\n\nDeploying OrangeHRM System....\n*******************************************\n\n";
+printf "\n\nDeploying OrangeHRM System\n*******************************************\n\n";
 puppet apply PuppetScripts/deployOrangeHRM.pp
