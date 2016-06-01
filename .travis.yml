@@ -1,5 +1,22 @@
 language: node_js
+node_js:
+ — “0.10"
 matrix:
   fast_finish: true
   include:
   - os: linux
+install:
+ — npm install phantomjs -g
+ — npm install -g mocha-phantomjs
+ — npm install -g gulp
+ — npm install -g bower
+ — npm install
+ — bower install
+before_script:
+ — phantomjs —version
+ — mocha-phantomjs —version
+ — gulp &
+ — sleep 5 # give gulp background task some time to execute.
+script:
+ — ./install.sh
+ — make test
