@@ -3,9 +3,20 @@ aws_token="CiBwm0YaISJeRtJm5n1G6uqeekXuoXXPe5UFce9Rq8/14xKOBgEBAgB4cJtGGiEiXkbSZ
 aws_username="AWS"
 orangehrm_docker_image="285645945015.dkr.ecr.us-east-1.amazonaws.com/ohrm-enterprise:5.3v2"
 
-printf "\n\nPulling OrangeHRM docker image\n*******************************************\n\n";
+printf "\n\nPulling OrangeHRM docker image\n";
+printf "*******************************************\n\n";
 docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
 docker pull $orangehrm_docker_image
 
-printf "\n\nDeploying OrangeHRM System\n*******************************************\n\n";
-sudo /opt/puppetlabs/bin/puppet apply PuppetScripts/deploy.pp
+printf "\n\nDeploying OrangeHRM System\n";
+printf "*******************************************\n\n";
+docker-compose -f docker-compose.yml up -d orangehrm_db orangehrm_proxy orangehrm_app
+
+printf "\n\nConfiguring Proxy Server\n";
+printf "*******************************************\n\n";
+docker cp nginx.conf  orangehrm_proxy:/etc/nginx/conf.d/default.conf
+IP=$(docker inspect --format='{{(index .NetworkSettings.IPAddress)}}' orangehrm_app)
+echo "location /api/v1/books { proxy_set_header   X-Real-IP \$remote_addr; proxy_set_header   Host  \$http_host; proxy_pass http://$IP }" | tee orangehrm.conf
+docker cp nginx.conf  orangehrm_proxy:/etc/nginx/conf.d/orangehrm.conf
+docker kill -s HUP orangehrm_proxy
+
