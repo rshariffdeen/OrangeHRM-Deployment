@@ -1,8 +1,7 @@
-orangehrm:
+orangehrm_app:
   image: 285645945015.dkr.ecr.us-east-1.amazonaws.com/ohrm-enterprise:5.3v2
-  container_name: orangehrm
-  ports:
-    - 80:80
+  restart: until_stopped
+  container_name: orangehrm_app
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
   environment:
@@ -14,10 +13,19 @@ orangehrm:
     - OHRM_ADMIN_PASS=admin
     - OHRM_SYSADMIN_PASS=admin
   links:
-    - dbserver:dbserver
+    - orangehrm_db:dbserver
 
-dbserver:
-  container_name: dbserver
+orangehrm_db:
+  container_name: orangehrm_db
   image: mysql:5.5
+  restart: always
   environment:
     - MYSQL_ROOT_PASSWORD=root
+
+
+orangehrm_proxy:
+  container_name: orangehrm_proxy
+  image: nginx:alpine
+  restart: always
+  ports:
+    - 7070:80
