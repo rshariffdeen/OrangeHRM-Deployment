@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "id": "disk",
+      "name": "Disk Utilization",
+      "notes": "Critical 95% util, warning 80% util",
+      "shell": "/bin/bash",
+      "script": "/data/consul/scripts/check-disk.sh",
+      "interval": "10s"
+    },
+
+    {
+      "id": "api",
+      "name": "HTTP API on port 5000",
+      "http": "http://localhost:5000/health",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+
+  ]
+}

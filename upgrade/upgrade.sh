@@ -8,15 +8,21 @@ printf "*******************************************\n\n";
 docker login -u $aws_username -p $aws_token -e none https://285645945015.dkr.ecr.us-east-1.amazonaws.com
 docker pull $orangehrm_docker_image
 
+printf "\n\nDeploying Discovery Service and Registry Service\n";
+printf "*******************************************\n\n";
+docker-compose -f docker-compose.yml up -d orangehrm_service_registry
+
 printf "\n\nDeploying OrangeHRM System\n";
 printf "*******************************************\n\n";
+sudo mkdir -p /data/nginx/{conf.d,includes,logs,upstreams,templates}
 docker-compose -f docker-compose.yml up -d orangehrm_db orangehrm_proxy orangehrm_app
 
 printf "\n\nConfiguring Proxy Server\n";
 printf "*******************************************\n\n";
 docker cp nginx.conf  orangehrm_proxy:/etc/nginx/conf.d/default.conf
-IP=$(docker inspect --format='{{(index .NetworkSettings.IPAddress)}}' orangehrm_app)
-echo "location /api/v1/books { proxy_set_header   X-Real-IP \$remote_addr; proxy_set_header   Host  \$http_host; proxy_pass http://$IP }" | tee orangehrm.conf
-docker cp nginx.conf  orangehrm_proxy:/etc/nginx/conf.d/orangehrm.conf
+docker cp orangehrm-includes.conf  orangehrm_proxy:/etc/nginx/includes/orangehrm-includes.conf
+CONSUL_IP=$(docker inspect --format='{{(index .NetworkSettings.IPAddress)}}' orangehrm_service_discovery)
+consul-template -consul $CONSUL_IP:8500 -template "orangehrm-upstreams.ctmpl:orangehrm-upstreams.conf" -once
+docker cp orangehrm-upstreams.conf orangehrm_proxy:/etc/nginx/upstreams/orangehrm-upstream.conf
 docker kill -s HUP orangehrm_proxy
 

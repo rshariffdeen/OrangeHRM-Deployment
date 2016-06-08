@@ -1,0 +1,5 @@
+upstream orangehrm {
+    {{range service "ohrm-enterprise" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}

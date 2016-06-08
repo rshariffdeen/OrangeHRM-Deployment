@@ -1,0 +1,57 @@
+orangehrm_app:
+  image: 285645945015.dkr.ecr.us-east-1.amazonaws.com/ohrm-enterprise:5.3v2
+  restart: always
+  container_name: orangehrm_app
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+  environment:
+    - VIRTUAL_HOST=orangehrm
+    - OHRM_DB_NAME=orangehrm
+    - OHRM_DB_HOST=dbserver
+    - OHRM_DB_USER=root
+    - OHRM_DB_PASS=root
+    - OHRM_ADMIN_PASS=admin
+    - OHRM_SYSADMIN_PASS=admin
+    - SERVICE_NAME=ohrm-enterprise
+  links:
+    - orangehrm_db:dbserver
+    - orangehrm_proxy:proxy
+  ports:
+    - 80
+
+orangehrm_db:
+  container_name: orangehrm_db
+  image: mysql:5.5
+  restart: always
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+
+
+orangehrm_proxy:
+  container_name: orangehrm_proxy
+  image: nginx:alpine
+  restart: always
+  ports:
+    - 7070:80
+  volumes:
+    - /data/nginx/conf.d:/etc/nginx/conf.d
+    - /data/nginx/includes:/etc/nginx/includes
+    - /data/nginx/upstreams:/etc/nginx/upstreams
+    - /data/nginx/logs:/var/log/nginx/log
+
+orangehrm_service_discovery:
+  container_name: orangehrm_service_discovery
+  image: gliderlabs/consul-server
+  restart: always
+  command: -server -bootstrap
+
+orangehrm_service_registry:
+  container_name: orangehrm_service_registry
+  image: gliderlabs/registrator
+  restart: always
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  hostname: $HOSTNAME
+  links:
+    - orangehrm_service_discovery:consul
+  command: -ip 172.17.0.1 consul://consul:8500
